@@ -1,5 +1,7 @@
 # ORCATECH Stroop Test
 
+[![Build Status](https://travis-ci.org/orcatechteam/react-neuropsych-stroop.svg?branch=v0.0.1)](https://travis-ci.org/orcatechteam/react-neuropsych-stroop)
+
 A Stroop test implemented as a [React](https://reactjs.org) component.
 
 <img width="400" alt="preview" src="docs/stroop-test-preview.gif" />
