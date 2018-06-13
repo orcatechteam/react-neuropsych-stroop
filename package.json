@@ -3,7 +3,9 @@
   "version": "1.1.0",
   "description": "React components for stroop test",
   "main": "dist/react-neuropsych-stroop.js",
-  "scripts": {},
+  "scripts": {
+    "test": "webpack --config webpack.config.js --progress --colors"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/orcatechteam/react-neuropsych-stroop.git"
