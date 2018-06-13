@@ -6,10 +6,10 @@ A Stroop test implemented as a [React](https://reactjs.org) component.
 
 ## Install
 
-The ORCATECH Stroop test is available as an [NPM package](https://www.npmjs.com/package/orcatech-ui-neuropsych-stroop).
+The ORCATECH Stroop test is available as an [NPM package](https://www.npmjs.com/package/@orcatech/react-neuropsych-stroop).
 
 ```sh
-npm install orcatech-ui-neuropsych-stroop
+npm install @orcatech/react-neuropsych-stroop
 ```
 
 ## Demo
@@ -24,7 +24,7 @@ Here's a quick example to get you started:
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Stroop from 'orcatech-ui-neuropsych-stroop';
+import Stroop from 'react-neuropsych-stroop';
 
 const words = ['green', 'red', 'blue', 'orange'];
 const colors = ['009900', '990000', '000099', 'EE7600']
