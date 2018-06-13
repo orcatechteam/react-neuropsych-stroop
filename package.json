@@ -1,0 +1,62 @@
+{
+  "name": "@orcatech/react-neuropsych-stroop",
+  "version": "1.1.0",
+  "description": "React components for stroop test",
+  "main": "dist/react-neuropsych-stroop.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orcatechteam/react-neuropsych-stroop.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "orcatech",
+    "neuropsych",
+    "stroop",
+    "react",
+    "test"
+  ],
+  "files": [
+    "README.md",
+    "dist/react-neuropsych-stroop.js"
+  ],
+  "bugs": {
+    "url": "http://github.com/orcatechteam/react-neuropsych-stroop/issues"
+  },
+  "homepage": "http://github.com/orcatechteam/react-neuropsych-stroop#readme",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "material-ui": "1.0.0-beta.37",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.0.0-beta.36",
+    "@babel/plugin-proposal-class-properties": "7.0.0-beta.36",
+    "@babel/plugin-proposal-object-rest-spread": "7.0.0-beta.36",
+    "@babel/plugin-transform-classes": "7.0.0-beta.36",
+    "@babel/plugin-transform-react-constant-elements": "7.0.0-beta.36",
+    "@babel/plugin-transform-react-inline-elements": "7.0.0-beta.36",
+    "@babel/preset-env": "7.0.0-beta.36",
+    "@babel/preset-react": "7.0.0-beta.36",
+    "@babel/register": "7.0.0-beta.36",
+    "babel-eslint": "^8.1.2",
+    "babel-loader": "8.0.0-beta.0",
+    "chai": "^4.1.2",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.12.1",
+    "@orcatech/eslint-config": "^1.0.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.5.1",
+    "jsdom": "^11.6.2",
+    "jss": "^9.7.0",
+    "live-server": "^1.2.0",
+    "webpack": "^3.8.1"
+  }
+}
