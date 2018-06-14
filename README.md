@@ -1,8 +1,8 @@
 # ORCATECH Stroop Test
 
-[![Build Status](https://travis-ci.org/orcatechteam/react-neuropsych-stroop.svg?branch=v1.1.1)](https://travis-ci.org/orcatechteam/react-neuropsych-stroop)
+[![Build Status](https://travis-ci.org/orcatechteam/react-neuropsych-stroop.svg?branch=v1.1.2)](https://travis-ci.org/orcatechteam/react-neuropsych-stroop)
 
-A Stroop test implemented as a [React](https://reactjs.org) component.
+A [Stroop Effect](https://en.wikipedia.org/wiki/Stroop_effect) Test implemented as a [React](https://reactjs.org) component.
 
 <img width="400" alt="preview" src="docs/stroop-test-preview.gif" />
 
@@ -42,9 +42,9 @@ const combos = [
 ];
 
 class App extends React.Component {
-  onComplete = (completionData) => {
+  onComplete = (data) => {
     // handle test completion
-    const { errors, successes, begin, finish, timeLimitReached } = completionData;
+    const { errors, successes, begin, finish, timeLimitReached } = data;
   }
 
   onSuccess = (data) => {
