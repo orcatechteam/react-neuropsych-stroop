@@ -18,8 +18,8 @@ const styles = theme => ({
 	},
 	stroopButton: {
 		padding: '1em 0',
-		width: "35vw";
-		maxWidth: "9em";
+		width: "35vw",
+		maxWidth: "9em",
 		fontSize: '1rem',
 		margin: '.5em',
 		border: '1px solid #666',
