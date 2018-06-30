@@ -25,5 +25,12 @@ module.exports = {
 			exclude: /node_modules/,
 			loader: 'babel-loader',
 		}]
-	}
+	},
+	plugins: [
+                // ensure that we get a production build of any dependencies
+                // this is primarily for React, where this removes 179KB from the bundle
+                //new webpack.DefinePlugin({
+                //        'process.env.NODE_ENV': '"production"'
+                //}),
+	]
 };
