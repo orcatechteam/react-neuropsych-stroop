@@ -1,6 +1,6 @@
 {
   "name": "@orcatech/react-neuropsych-stroop",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "React components for stroop test",
   "main": "dist/react-neuropsych-stroop.js",
   "scripts": {
@@ -31,10 +31,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "material-ui": "1.0.0-beta.37",
+    "@material-ui/core": "^1.3.0",
     "prop-types": "^15.6.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
   },
   "devDependencies": {
     "@babel/core": "7.0.0-beta.36",
