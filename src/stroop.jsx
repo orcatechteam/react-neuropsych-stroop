@@ -84,11 +84,9 @@ class Stroop extends React.Component {
 		begin: undefined,
 		displayError: false,
 		displayComplete: false,
-		errors: [],
+		data: [],
 		finish: undefined,
 		progress: 0,
-		start: undefined,
-		successes: [],
 		timeLimitReached: false,
 	};
 
@@ -126,11 +124,11 @@ class Stroop extends React.Component {
 			const word = this.props.words[combos[this.state.progress].word];
 			const color = this.props.colors[combos[this.state.progress].color];
 			const data = {
-				stamp: new Date(),
+				stamp: (new Date()).getTime(),
 				index: progress,
 				word: word.toUpperCase(),
 				color: color.toUpperCase(),
-				start: this.state.start,
+				start: this.state.start.getTime(),
 				selectedColor: selectedColor.toUpperCase(),
 			};
 
@@ -154,15 +152,17 @@ class Stroop extends React.Component {
 	};
 
 	handleError = data => {
+		data.type = "Error";
 		this.setState({
-			errors: [...this.state.errors, data],
+			data: [...this.state.data, data],
 			displayError: true,
 		});
 		this.props.onError(data);
 	};
 
 	handleSuccess = data => {
-		this.setState({ successes: [...this.state.successes, data] });
+		data.type = "Success";
+		this.setState({ data: [...this.state.data, data] });
 		this.props.onSuccess(data);
 	};
 
@@ -170,15 +170,13 @@ class Stroop extends React.Component {
 		if (this.state.displayComplete) {
 			return;
 		}
-		const { errors, successes, begin, timeLimitReached } = this.state;
-		const completionData = {
-			begin,
-			finish: Date.now(),
-			errors,
-			successes,
-			timeLimitReached,
-		};
-		this.props.onComplete(completionData);
+		this.props.onComplete({
+			start: this.state.begin,
+			stop: (new Date()).getTime(),
+			events: this.state.data,
+			timeLimit: this.props.timeLimit,
+			timeLimitReached: timeLimitReached,
+		});
 		this.setState({
 			displayError: false,
 			displayComplete: true,
