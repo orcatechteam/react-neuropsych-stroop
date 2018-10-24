@@ -32,7 +32,10 @@ const styles = theme => ({
 		background: theme.palette.action.disabledBackground,
 		color: theme.palette.text.disabled,
 	},
-	stroopText: theme.typography.title,
+	stroopText: {
+		...theme.typography.headline,
+		fontWeight: 'bold'
+	},
 	popUpContainer: {
 		textAlign: 'center',
 	},
