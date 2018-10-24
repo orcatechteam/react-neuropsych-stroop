@@ -70,8 +70,8 @@ class Stroop extends React.Component {
 		completionMessage: PropTypes.string.isRequired,
 		incorrectMessage: PropTypes.string.isRequired,
 		onComplete: PropTypes.func.isRequired,
-		onError: PropTypes.func.isRequired,
-		onSuccess: PropTypes.func.isRequired,
+		onError: PropTypes.func,
+		onSuccess: PropTypes.func,
 		timeLimit: PropTypes.number.isRequired,
 		words: PropTypes.arrayOf(PropTypes.string).isRequired,
 	};
@@ -160,13 +160,17 @@ class Stroop extends React.Component {
 			data: [...this.state.data, data],
 			displayError: true,
 		});
-		this.props.onError(data);
+		if (typeof this.props.onError === 'function') {
+			this.props.onError(data);
+		}
 	};
 
 	handleSuccess = data => {
 		data.type = "Success";
 		this.setState({ data: [...this.state.data, data] });
-		this.props.onSuccess(data);
+		if (typeof this.props.onSuccess === 'function') {
+			this.props.onSuccess(data);
+		}
 	};
 
 	handleCompletion = () => {
