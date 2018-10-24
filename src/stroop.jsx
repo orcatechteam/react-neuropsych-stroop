@@ -126,14 +126,19 @@ class Stroop extends React.Component {
 
 			const word = this.props.words[combos[this.state.progress].word];
 			const color = this.props.colors[combos[this.state.progress].color];
-			const data = {
+
+			let data = {
 				stamp: (new Date()).getTime(),
 				index: progress,
 				word: word.toUpperCase(),
 				color: color.toUpperCase(),
-				start: this.state.start.getTime(),
 				selectedColor: selectedColor.toUpperCase(),
 			};
+			if (typeof this.state.start !== 'undefined' && this.startTimer.start instanceof Date) {
+				data.start = this.state.start.getTime();
+			} else {
+				data.start = undefined;
+			}
 
 			if (data.color !== data.selectedColor) {
 				this.handleError(data);
@@ -177,17 +182,18 @@ class Stroop extends React.Component {
 		if (this.state.displayComplete) {
 			return;
 		}
-		this.props.onComplete({
+		const completionData = {
 			start: this.state.begin,
 			stop: (new Date()).getTime(),
 			events: this.state.data,
 			timeLimit: this.props.timeLimit,
-			timeLimitReached: timeLimitReached,
-		});
+			timeLimitReached: this.state.timeLimitReached,
+		};
+		this.props.onComplete(completionData);
 		this.setState({
 			displayError: false,
 			displayComplete: true,
-			finish: completionData.finish,
+			finish: completionData,
 		});
 	};
 
