@@ -32,7 +32,10 @@ const styles = theme => ({
 		background: theme.palette.action.disabledBackground,
 		color: theme.palette.text.disabled,
 	},
-	stroopText: theme.typography.title,
+	stroopText: {
+		...theme.typography.headline,
+		fontWeight: 'bold'
+	},
 	popUpContainer: {
 		textAlign: 'center',
 	},
@@ -67,8 +70,8 @@ class Stroop extends React.Component {
 		completionMessage: PropTypes.string.isRequired,
 		incorrectMessage: PropTypes.string.isRequired,
 		onComplete: PropTypes.func.isRequired,
-		onError: PropTypes.func.isRequired,
-		onSuccess: PropTypes.func.isRequired,
+		onError: PropTypes.func,
+		onSuccess: PropTypes.func,
 		timeLimit: PropTypes.number.isRequired,
 		words: PropTypes.arrayOf(PropTypes.string).isRequired,
 	};
@@ -123,14 +126,19 @@ class Stroop extends React.Component {
 
 			const word = this.props.words[combos[this.state.progress].word];
 			const color = this.props.colors[combos[this.state.progress].color];
-			const data = {
+
+			let data = {
 				stamp: (new Date()).getTime(),
 				index: progress,
 				word: word.toUpperCase(),
 				color: color.toUpperCase(),
-				start: this.state.start.getTime(),
 				selectedColor: selectedColor.toUpperCase(),
 			};
+			if (typeof this.state.start !== 'undefined' && this.startTimer.start instanceof Date) {
+				data.start = this.state.start.getTime();
+			} else {
+				data.start = undefined;
+			}
 
 			if (data.color !== data.selectedColor) {
 				this.handleError(data);
@@ -157,30 +165,35 @@ class Stroop extends React.Component {
 			data: [...this.state.data, data],
 			displayError: true,
 		});
-		this.props.onError(data);
+		if (typeof this.props.onError === 'function') {
+			this.props.onError(data);
+		}
 	};
 
 	handleSuccess = data => {
 		data.type = "Success";
 		this.setState({ data: [...this.state.data, data] });
-		this.props.onSuccess(data);
+		if (typeof this.props.onSuccess === 'function') {
+			this.props.onSuccess(data);
+		}
 	};
 
 	handleCompletion = () => {
 		if (this.state.displayComplete) {
 			return;
 		}
-		this.props.onComplete({
+		const completionData = {
 			start: this.state.begin,
 			stop: (new Date()).getTime(),
 			events: this.state.data,
 			timeLimit: this.props.timeLimit,
-			timeLimitReached: timeLimitReached,
-		});
+			timeLimitReached: this.state.timeLimitReached,
+		};
+		this.props.onComplete(completionData);
 		this.setState({
 			displayError: false,
 			displayComplete: true,
-			finish: completionData.finish,
+			finish: completionData,
 		});
 	};
 

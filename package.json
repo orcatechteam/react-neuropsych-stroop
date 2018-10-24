@@ -1,6 +1,6 @@
 {
   "name": "@orcatech/react-neuropsych-stroop",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "React components for stroop test",
   "main": "dist/react-neuropsych-stroop.js",
   "scripts": {
