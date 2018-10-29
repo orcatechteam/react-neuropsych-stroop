@@ -34,6 +34,7 @@ const styles = theme => ({
 	},
 	stroopText: {
 		...theme.typography.headline,
+		fontSize: '2rem',
 		fontWeight: 'bold'
 	},
 	popUpContainer: {
