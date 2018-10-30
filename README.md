@@ -26,7 +26,7 @@ Here's a quick example to get you started:
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Stroop from 'react-neuropsych-stroop';
+import Stroop from '@orcatech/react-neuropsych-stroop';
 
 const words = ['green', 'red', 'blue', 'orange'];
 const colors = ['009900', '990000', '000099', 'EE7600']
@@ -84,5 +84,6 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 | onComplete        | func   |                                   | Callback fired when the test is completed <br><br> `function (completionData: object) => void` <br> _completionData_: an object with the following keys <br> &nbsp;&nbsp; `errors, successes, begin, finish, timeLimitReached`                                |
 | onSuccess         | func   |                                   | Callback fired when a correct button was pressed <br><br> `function (data) => void` <br> _data_: an object with the following keys <br> &nbsp;&nbsp; `{ stamp: number, index: number, word: string, color: string, start: timestamp, selectedColor: string }` |
 | onError           | func   |                                   | Callback fired when an incorrect button was pressed <br><br> `function (data) => void` <br> _data_: an object with the following keys <br> &nbsp;&nbsp; `stamp, index, word, color, start, selectedColor`                                                     |
+| textSize          | string | `'2rem'`                          | The font-size of the text. |
 | timeLimit         | number | `45000`                           | Milliseconds for the time limit of the test. Use `0` to disable the time limit.                                                                                                                                                                               |
 | words             | array  |                                   | An array of keywords for each color. These should match the items in the `colors` array. <br><br> `['green', 'red', 'blue', 'orange']`                                                                                                                        |

@@ -73,6 +73,7 @@ class Stroop extends React.Component {
 		onComplete: PropTypes.func.isRequired,
 		onError: PropTypes.func,
 		onSuccess: PropTypes.func,
+		textSize: PropTypes.string,
 		timeLimit: PropTypes.number.isRequired,
 		words: PropTypes.arrayOf(PropTypes.string).isRequired,
 	};
@@ -81,6 +82,7 @@ class Stroop extends React.Component {
 		buttonsPerRow: 2,
 		completionMessage: 'Completed! Please press next.',
 		incorrectMessage: 'Incorrect, please try again',
+		textSize: '2rem',
 		timeLimit: 45000,
 	};
 
@@ -254,10 +256,18 @@ class Stroop extends React.Component {
 			return null;
 		}
 
+		let textStyles = {
+			color: `#${color}`,
+		};
+
+		if (this.props.textSize !== '2rem' && this.props.textSize.length > 0) {
+			textStyles.fontSize = this.props.textSize;
+		}
+
 		return (
 			<div
 				className={this.props.classes.stroopText}
-				style={{ color: '#' + color }}
+				style={textStyles}
 			>
 				{word}
 			</div>
