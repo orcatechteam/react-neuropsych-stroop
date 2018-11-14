@@ -19,9 +19,10 @@ const combos = [
 ];
 
 class StroopTestApp extends React.Component {
-	handleComplete = ({ errors, successes, begin, finish, timeLimitReached }) => {
-		console.info('Errors: %s, Successes: %s', errors.length, successes.length);
-		console.info('Elapsed time: %s seconds', (finish - begin) / 1000);
+	handleComplete = ({ events, start, stop, timeLimit, timeLimitReached }) => {
+		console.info('Event data: ', events);
+		console.info('Duration: %s of %s seconds', (stop - start) / 1000, timeLimit / 1000);
+		console.info('Time Limit Reached: %s', timeLimitReached);
 	};
 
 	handleError = data => {};
@@ -43,4 +44,7 @@ class StroopTestApp extends React.Component {
 	}
 }
 
-ReactDOM.render(<StroopTestApp />, document.getElementById('root'));
+ReactDOM.render(
+	<StroopTestApp />,
+	document.getElementById('root')
+);
