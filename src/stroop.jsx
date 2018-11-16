@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -44,7 +45,7 @@ const styles = theme => ({
 		background: '#FFF',
 		fontFamily: 'sans-serif',
 		fontSize: '1rem',
-		border: '1px solid #666',
+		// border: '1px solid #666',
 		borderRadius: '5px',
 		padding: '1em 15px',
 		margin: '0 auto',
@@ -52,6 +53,12 @@ const styles = theme => ({
 	},
 	popUpError: {
 		color: theme.palette.error.main,
+	},
+	popUpCorrect: {
+		color: 'black',
+	},
+	popUpCorrectFade: {
+		opacity: '0',
 	},
 	directions: {
 		textAlign: 'center',
@@ -69,6 +76,8 @@ class Stroop extends React.Component {
 			color: PropTypes.number.isRequired
 		})).isRequired,
 		completionMessage: PropTypes.string.isRequired,
+		correctMessage: PropTypes.string,
+		correctMessageTimeout: PropTypes.number,
 		incorrectMessage: PropTypes.string.isRequired,
 		onComplete: PropTypes.func.isRequired,
 		onError: PropTypes.func,
@@ -81,7 +90,9 @@ class Stroop extends React.Component {
 	static defaultProps = {
 		buttonsPerRow: 2,
 		completionMessage: 'Completed! Please press next.',
-		incorrectMessage: 'Incorrect, please try again',
+		correctMessage: 'Correct!',
+		correctMessageTimeout: 750,
+		incorrectMessage: 'Incorrect, please try again.',
 		textSize: '2rem',
 		timeLimit: 45000,
 	};
@@ -89,6 +100,7 @@ class Stroop extends React.Component {
 	state = {
 		begin: undefined,
 		displayError: false,
+		displayCorrect: false,
 		displayComplete: false,
 		data: [],
 		finish: undefined,
@@ -175,7 +187,18 @@ class Stroop extends React.Component {
 
 	handleSuccess = data => {
 		data.type = "Success";
-		this.setState({ data: [...this.state.data, data] });
+		this.setState({
+			data: [...this.state.data, data],
+			displayCorrect: true,
+		});
+		setTimeout(
+			() => {
+				this.setState({
+					displayCorrect: false
+				})
+			},
+			this.props.correctMessageTimeout
+		);
 		if (typeof this.props.onSuccess === 'function') {
 			this.props.onSuccess(data);
 		}
@@ -213,6 +236,18 @@ class Stroop extends React.Component {
 			);
 		}
 	};
+
+	renderPopUpCorrect = () => {
+		if (this.state.displayCorrect) {
+			return (
+				<div className={this.props.classes.popUpContainer}>
+					<div className={classnames(this.props.classes.popUpContent, this.props.classes.popUpCorrect)}>
+						{this.props.correctMessage}
+					</div>
+				</div>
+			)
+		}
+	}
 
 	renderPopUpComplete = () => {
 		if (this.state.displayComplete) {
@@ -282,6 +317,7 @@ class Stroop extends React.Component {
 					<table className={this.props.classes.stroopButtons}>
 						<tbody>{this.renderButtonRows()}</tbody>
 					</table>
+					{this.renderPopUpCorrect()}
 					{this.renderPopUpError()}
 					{this.renderPopUpComplete()}
 				</div>
