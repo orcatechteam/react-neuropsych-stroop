@@ -89,3 +89,9 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 | textSize          | string | `'2rem'`                          | The font-size of the text. |
 | timeLimit         | number | `45000`                           | Milliseconds for the time limit of the test. Use `0` to disable the time limit.                                                                                                                                                                               |
 | words             | array  |                                   | An array of keywords for each color. These should match the items in the `colors` array. <br><br> `['green', 'red', 'blue', 'orange']`                                                                                                                        |
+
+## Testing
+
+Cross-browser testing supported by:<br />
+
+<a href="https://www.browserstack.com/"><img src="docs/Browserstack-logo@2x.png" width="160"></a>
