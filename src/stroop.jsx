@@ -82,6 +82,8 @@ class Stroop extends React.Component {
 		onComplete: PropTypes.func.isRequired,
 		onError: PropTypes.func,
 		onSuccess: PropTypes.func,
+		retry: PropTypes.bool,
+		retryMessage: PropTypes.string,
 		textSize: PropTypes.string,
 		timeLimit: PropTypes.number.isRequired,
 		words: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -93,6 +95,8 @@ class Stroop extends React.Component {
 		correctMessage: 'Correct!',
 		correctMessageTimeout: 750,
 		incorrectMessage: 'Incorrect, please try again.',
+		retry: false,
+		retryMessage: 'Would you like to retry?',
 		textSize: '2rem',
 		timeLimit: 45000,
 	};
@@ -253,11 +257,38 @@ class Stroop extends React.Component {
 		if (this.state.displayComplete) {
 			return (
 				<div className={this.props.classes.popUpContainer}>
-					<div className={this.props.classes.popUpContent}>{this.props.completionMessage}</div>
+					<div className={this.props.classes.popUpContent}>
+						{this.renderCompletionContent()}
+					</div>
 				</div>
 			);
 		}
 	};
+
+	renderCompletionContent = () => {
+		if (this.props.retry === false) {
+			return this.props.completionMessage;
+		}
+		return (
+			<React.Fragment>
+				<p>{this.props.retryMessage}</p>
+				<button
+					onClick={this.handleRetry}
+					style={{ color: 'white', background: '#333', border: 'none', fontSize: '1rem', marginTop: '10px' }}
+				>
+					Retry
+				</button>
+			</React.Fragment>
+		);
+	}
+
+	handleRetry = () => {
+		this.setState({
+			data: [],
+			displayComplete: false,
+			progress: 0,
+		});
+	}
 
 	renderButtonRows = () => {
 		const colorButtons = this.props.colors.map((color, i) => (
