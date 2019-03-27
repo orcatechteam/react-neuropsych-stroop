@@ -27,6 +27,11 @@ const styles = theme => ({
 		borderRadius: '5px',
 		background: '#FFF',
 		color: '#000',
+		outline: 'none',
+		'&:active:focus': {
+			background: '#f1f1f1',
+			border: '1px solid #000'
+		}
 	},
 	stroopButtonDisabled: {
 		borderColor: theme.palette.action.disabled,
