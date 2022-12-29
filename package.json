@@ -48,7 +48,7 @@
     "@babel/register": "7.0.0-beta.36",
     "@orcatech/eslint-config": "^1.0.0",
     "babel-eslint": "^8.1.2",
-    "babel-loader": "8.0.0-beta.0",
+    "babel-loader": "8.3.0",
     "chai": "^4.1.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
@@ -59,6 +59,6 @@
     "jsdom": "^11.6.2",
     "jss": "^9.7.0",
     "live-server": "^1.2.0",
-    "webpack": "^3.8.1"
+    "webpack": "^5.75.0"
   }
 }
